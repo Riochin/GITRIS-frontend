@@ -124,6 +124,38 @@ html {
 }
 
 /* 入力要素での自動ズーム防止 */
-input, textarea, select {
+input, textarea, select, button {
   font-size: 16px !important; /* iOSでの自動ズーム防止 */
+  /* さらに強力な自動ズーム防止 */
+  -webkit-text-size-adjust: none !important;
+  -moz-text-size-adjust: none !important;
+  -ms-text-size-adjust: none !important;
+  text-size-adjust: none !important;
+}
+
+/* 特定のモバイルブラウザ向け追加設定 */
+@media screen and (max-width: 768px) {
+  body, html {
+    /* Safari iOS 向け追加設定 */
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    
+    /* Chrome Mobile 向け追加設定 */
+    zoom: 1 !important;
+    
+    /* 全般的な自動ズーム防止 */
+    overflow-x: hidden !important;
+  }
+  
+  /* テトリスゲーム領域での追加制御 */
+  .tetris-app {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
 }
