@@ -135,18 +135,32 @@ input, textarea, select, button {
 
 /* 特定のモバイルブラウザ向け追加設定 */
 @media screen and (max-width: 768px) {
+  * {
+    /* 全要素に強制ズーム防止 */
+    -webkit-text-size-adjust: none !important;
+    -moz-text-size-adjust: none !important;
+    -ms-text-size-adjust: none !important;
+    text-size-adjust: none !important;
+    transform: scale(1) !important;
+    zoom: 1 !important;
+  }
+  
   body, html {
     /* Safari iOS 向け追加設定 */
-    -webkit-text-size-adjust: 100% !important;
+    -webkit-text-size-adjust: none !important;
     -webkit-touch-callout: none !important;
     -webkit-user-select: none !important;
     user-select: none !important;
     
     /* Chrome Mobile 向け追加設定 */
     zoom: 1 !important;
+    transform: scale(1) !important;
     
     /* 全般的な自動ズーム防止 */
     overflow-x: hidden !important;
+    position: fixed !important;
+    width: 100vw !important;
+    height: 100vh !important;
   }
   
   /* テトリスゲーム領域での追加制御 */
@@ -157,5 +171,7 @@ input, textarea, select, button {
     width: 100vw !important;
     height: 100vh !important;
     overflow: hidden !important;
+    transform: scale(1) !important;
+    zoom: 1 !important;
   }
 }
