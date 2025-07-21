@@ -19,13 +19,11 @@ export const metadata: Metadata = {
 // モバイル用viewport設定（自動ズーム防止）
 export const viewport: Viewport = {
   width: 'device-width',
-  initialScale: 1.0,
-  maximumScale: 1.0,
-  minimumScale: 1.0,
-  userScalable: false,
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+  userScalable: true,
   viewportFit: 'cover',
-  // さらに強力な自動ズーム防止
-  interactiveWidget: 'resizes-content',
 };
 
 export default function RootLayout({
@@ -48,31 +46,6 @@ export default function RootLayout({
           <Header />
           {children}
         </AuthProvider>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // モバイル自動ズーム防止のためのJavaScript
-              document.addEventListener('gesturestart', function (e) {
-                e.preventDefault();
-              });
-              document.addEventListener('gesturechange', function (e) {
-                e.preventDefault();
-              });
-              document.addEventListener('gestureend', function (e) {
-                e.preventDefault();
-              });
-              // ダブルタップズーム防止
-              let lastTouchEnd = 0;
-              document.addEventListener('touchend', function (event) {
-                let now = (new Date()).getTime();
-                if (now - lastTouchEnd <= 300) {
-                  event.preventDefault();
-                }
-                lastTouchEnd = now;
-              }, false);
-            `,
-          }}
-        />
       </body>
     </html>
   );
